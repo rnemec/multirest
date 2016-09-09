@@ -1,0 +1,46 @@
+{
+  "name": "multirest",
+  "version": "1.0.0",
+  "description": "Combine REST requests",
+  "author": "Richard Nemec <rne@pragment.com>",
+  "contributors": [],
+  "license": "MIT",
+  "keywords": [
+    "rest",
+    "connect",
+    "express",
+    "middleware",
+    "multiple"
+  ],
+  "repository": "rnemec/multirest",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "debug": "^2.2.0"
+  },
+  "devDependencies": {
+    "body-parser": "1.15.2",
+    "chai": "3.5.0",
+    "chai-deep-match": "1.0.2",
+    "connect": "3.4.1",
+    "cookie-parser": "^1.4.3",
+    "express": "4.14.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.0.2",
+    "supertest": "2.0.0",
+    "supertest-as-promised": "4.0.0"
+  },
+  "files": [
+    "HISTORY.md",
+    "LICENSE",
+    "README.md",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --check-leaks --reporter spec --bail test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --check-leaks --reporter dot test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --check-leaks --reporter spec test/"
+  }
+}

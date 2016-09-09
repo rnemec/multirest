@@ -39,7 +39,7 @@ describe('MultiREST', function() {
       .get(GET1_URL)
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(3);
         res.body[1].should.have.property('one');
@@ -62,7 +62,7 @@ describe('MultiREST', function() {
       .send({postval: 2})
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         var reqRep = res.body[0];
@@ -85,7 +85,7 @@ describe('MultiREST', function() {
       .set('Cookie', 'cookie-1=1234567;cookie-2=blah')
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         var reqRep = res.body[0];
         testReqRep(reqRep, {
@@ -107,7 +107,7 @@ describe('MultiREST', function() {
         .expect(200)
         .expect('Content-Type', /json/)
       })
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         var reqRep = res.body[0];
         testReqRep(reqRep, {
@@ -134,7 +134,7 @@ describe('MultiREST', function() {
       .send([])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(0);
       });
@@ -152,7 +152,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -182,7 +182,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -212,7 +212,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -242,7 +242,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -271,7 +271,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(204);
@@ -295,7 +295,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(2);
         res.body[0].status.should.be.equal(200);
@@ -345,7 +345,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(3);
         res.body[0].status.should.be.equal(200);
@@ -400,7 +400,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(2);
         res.body[0].status.should.be.equal(404);
@@ -435,7 +435,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(2);
         res.body[0].status.should.be.equal(500);
@@ -467,7 +467,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -501,7 +501,7 @@ describe('MultiREST', function() {
       ])
       .expect(200)
       .expect('Content-Type', /json/)
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);
@@ -532,7 +532,7 @@ describe('MultiREST', function() {
         .expect(200)
         .expect('Content-Type', /json/)
       })
-      .then(res => {
+      .then(function(res) {
         res.body.should.be.instanceOf(Array);
         res.body.should.have.length(1);
         res.body[0].status.should.be.equal(200);

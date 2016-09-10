@@ -1,6 +1,9 @@
 # multirest
 
-Connect/express middleware to serve combined REST request in one REST call and one HTTP(S) connection.
+[![NPM Version](https://img.shields.io/npm/v/multirest.svg)](https://npmjs.org/package/multirest) [![Dependencies](https://david-dm.org/rnemec/multirest.svg)](https://github.com/rnemec/multirest) [![Build Status](https://travis-ci.org/rnemec/multirest.svg?branch=master)](https://travis-ci.org/rnemec/multirest) [![License](https://img.shields.io/npm/l/multirest.svg?maxAge=2592000)](https://github.com/rnemec/multirest) [![GitHub stars](https://img.shields.io/github/stars/rnemec/multirest.svg?style=social&label=Star&maxAge=2592000)](https://github.com/rnemec/multirest)
+
+
+Connect/express middleware to serve combined REST requests in one REST call over one HTTP(S) connection.
 
 ## Inspiration
 

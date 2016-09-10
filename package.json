@@ -1,6 +1,6 @@
 {
   "name": "multirest",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Combine REST requests",
   "author": "Richard Nemec <rne@pragment.com>",
   "contributors": [],
@@ -21,7 +21,7 @@
     "body-parser": "1.15.2",
     "chai": "3.5.0",
     "chai-deep-match": "1.0.2",
-    "connect": "3.4.1",
+    "connect": "3.5.0",
     "cookie-parser": "^1.4.3",
     "express": "4.14.0",
     "istanbul": "0.4.5",

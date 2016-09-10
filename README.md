@@ -55,6 +55,8 @@ Default = 5
 
 ## REST API
 
+(Prototype of one approach for a client-side is in the [test.js](test/test.js): rest request method that returns a promise of the rest data (as if it were doing it directly), but you can call it multiple times, before firing it off. When the multirest request is done, the many individual promises get fulfilled with their data.)
+
 * POST
   * url: configured route (e.g. '/api/multirest')
   * body: JSON Array of individual requests

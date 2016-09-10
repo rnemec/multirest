@@ -24,15 +24,13 @@ module.exports = multirest;
  * Create a new multirest middleware.
  *
  * @param {object} [options]
- * @param {array} [options.preserve]
+ * @param {array} [options.concurrency]
  * @return {function} middleware
  * @public
  */
 function multirest(app, options) {
   var opts = options || {};
 
-  // request fields to preserve across calls
-  var preserve = opts.preserve || ['user'];
   var concurrency = opts.concurrency || 5;
 
   debug('multirest options %j', opts);

@@ -5,6 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var multirest = require('..');
+var Bluebird = require('bluebird');
 
 var request = require('supertest-as-promised');
 var chai = require('chai');
@@ -555,6 +556,112 @@ describe('MultiREST', function() {
     });
 
   });
+
+  describe('client-side prototype', function () {
+
+    var reqs = [];
+    var callbacks = [];
+
+    /*
+    * @param req - individual request
+    * @return Promise with the result of the request
+    */
+    function requestMulti(req) {
+      reqs.push(req);
+      return new Bluebird(function(fulfill, reject) {
+        callbacks.push({
+          fulfill: fulfill,
+          reject: reject
+        });
+      });
+    }
+
+    function executeRequests() {
+      var reqs_in_process = reqs;
+      reqs = [];
+      var cbs_in_process = callbacks;
+      callbacks = [];
+      return request(app)
+      .post('/multirest')
+      .set('testheader', 'Test Value')
+      .send(reqs_in_process)
+      .then(function(mainRes) {
+        // console.log('start execute');
+        if ((mainRes.status === 200) && (mainRes.body)) {
+          var resArray = mainRes.body;
+          resArray.forEach(function(res,i) {
+            var callback = cbs_in_process.shift();
+            // TODO if res.status 404/500, >=400
+            // console.log('fulfilling ' + i);
+            callback.fulfill(res.body);
+          });
+        } else {
+          console.error(mainRes);
+        }
+      })
+      .finally(() => {
+        cbs_in_process.forEach(function(callback) {
+          callback.reject('Failed the request');
+        });
+      });
+    }
+
+    it('should populate variables', function() {
+      var one = null;
+      var two = null;
+
+      requestMulti({
+        method: 'GET',
+        url: GET1_URL
+      })
+      .then(val => {
+        // console.log('val1');
+        one = val;
+      })
+      .catch((err) => {console.log(err);});
+
+      requestMulti({
+        method: 'GET',
+        url: GET2_URL
+      })
+      .then(val => {
+        // console.log('val2');
+        two = val;
+      })
+      .catch((err) => {console.log(err);});
+
+      expect(one).to.be.null;
+      expect(two).to.be.null;
+      reqs.should.have.length(2);
+      callbacks.should.have.length(2);
+
+      return executeRequests()
+      .then(() => {
+        // console.log('after request');
+        one.should.be.instanceOf(Array);
+        var reqRep = one[0];
+        testReqRep(reqRep, {
+          url: GET1_URL,
+          method: 'GET',
+          params: {oneGetId: '111'},
+          query: {getFilter: 'getBlah'},
+          cookies: {},
+          body: {}
+        });
+        two.should.be.instanceOf(Array);
+        var reqRep = two[0];
+        testReqRep(reqRep, {
+          url: GET2_URL,
+          method: 'GET',
+          params: {twoGetId: '222'},
+          query: {},
+          cookies: {},
+          body: {}
+        });
+      });
+    });
+  });
+
 });
 
 function App(options) {

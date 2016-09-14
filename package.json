@@ -15,7 +15,9 @@
   "repository": "rnemec/multirest",
   "dependencies": {
     "bluebird": "^3.4.0",
-    "debug": "^2.2.0"
+    "debug": "^2.2.0",
+    "supertest": "2.0.0",
+    "supertest-as-promised": "4.0.0"
   },
   "devDependencies": {
     "body-parser": "1.15.2",
